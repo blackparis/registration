@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    verify
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block links %}
+    <a href="https://paris-sanskrit.com">Homepage</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/contents">Contents</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/notes">Notes</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/search">Search</a>
+{% endblock %}
+
+{% block body %}
+<div style="text-align: center;">
+    <h1>Verify Email Address</h1><br>
+    <p>Check your inbox/spam folder for a verification code.</p>
+    <p>Code sent to - {{email}}</p>
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            {% if recoverpassword %}
+                <form action="{{ url_for('verify') }}" method="POST">
+            {% else %}
+                <form action="{{ url_for('verification') }}" method="POST">
+            {% endif %}            
+                <div class="form-group">
+                    <label for="code"><span class="requirement">*</span>Code</label>
+                    <input type="text" class="form-control" id="code" name="code" autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Verify</button>
+            </form>
+            {% if verify_error %}<div class="error_message">{{ verify_error }}</div>{% else %}<br>{% endif %}
+            {% if recoverpassword %}
+                <div>
+                    <a href="{{ url_for('resendRecoveryCode') }}">Resent Recovery Code</a><br>
+                    <a href="{{ url_for('cancelRecoverPassword') }}">Cancel</a>
+                </div>
+            {% else %}
+                <div>
+                    <a href="{{ url_for('cancelverification') }}">Cancel</a><br>
+                    <a href="{{ url_for('resendVerificationCode') }}">Resend Verification Code</a><br>
+                    <a href="{{ url_for('confirmation') }}">Proceed Without Verification</a>
+                </div>
+            {% endif %}
+        </div>
+        <div class="col-lg-4">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

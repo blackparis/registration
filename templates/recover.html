@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Recover Password
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block links %}
+    <a href="https://paris-sanskrit.com">Homepage</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/contents">Contents</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/notes">Notes</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/search">Search</a>
+{% endblock %}
+
+{% block body %}
+<div style="text-align: center;">
+    <h1>Recover Password</h1><br>
+    <p>Enter Your Email Address</p>
+    <div class="row">
+        <div class="col-lg-3">
+
+        </div>
+        <div class="col-lg-6">
+            <form action="{{url_for('recover')}}" method="POST">
+                <div class="form-group">
+                    <label for="email"><span class="requirement">*</span>Email</label>
+                    <input type="text" class="form-control" id="email" name="email" autofocus>
+                </div>
+                <button type="submit" class="btn btn-primary">Continue</button>
+            </form>
+            {% if recover_error %}<div class="error_message">{{ recover_error }}</div>{% else %}<br>{% endif %}
+            <div>
+                <a href="{{ url_for('register') }}">Register</a>&nbsp;&nbsp;
+                <a href="https://paris-sanskrit.com/login">Login</a>
+            </div>
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

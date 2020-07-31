@@ -1,0 +1,36 @@
+body {
+    padding: 20px;    
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: large;
+}
+
+
+@media (min-width: 1000px) {
+    #logo {width: 100%;}
+}
+
+@media (max-width: 999px) {
+    #logo {width: 100px;}
+}
+
+#siteheader {text-align: center;}
+
+hr {
+    display: block;
+    border-width: 2px;
+    color: black;
+    background-color: black;
+}
+
+.editlinks {
+    color: red;
+    font-weight: bold;
+}
+
+.requirement {
+    color: red;
+}
+
+.error_message {
+    color: red;
+}

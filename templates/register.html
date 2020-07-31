@@ -1,0 +1,55 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block links %}
+    <a href="https://paris-sanskrit.com">Homepage</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/contents">Contents</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/notes">Notes</a>&nbsp;&nbsp;
+    <a href="https://paris-sanskrit.com/search">Search</a>
+{% endblock %}
+
+{% block body %}
+<div style="text-align: center;">
+    <h1>Register</h1>
+    <div class="row">
+        <div class="col-lg-3">
+
+        </div>
+        <div class="col-lg-6">
+            <form action="{{ url_for('register') }}" method="POST">
+                <div class="form-group">
+                    <label for="username"><span class="requirement">*</span>Username</label>
+                    <input type="text" class="form-control" id="username" name="username" autofocus>
+                </div>
+                <div class="form-group">
+                    <label for="email"><span class="requirement">*</span>Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password"><span class="requirement">*</span>Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <div class="form-group">
+                    <label for="password1"><span class="requirement">*</span>Re-Type Password</label>
+                    <input type="password" class="form-control" id="password1" name="password1">
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+            {% if register_error %}<div class="error_message">{{ register_error }}</div>{% else %}<br>{% endif %}
+            <div>
+                <a href="https://paris-sanskrit.com/login">Login</a>&nbsp;&nbsp;
+                <a href="{{ url_for('recover') }}">Forgot Password</a>
+            </div>
+        </div>
+        <div class="col-lg-3">
+
+        </div>
+    </div>
+</div>
+{% endblock %}

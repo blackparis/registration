@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="sa">
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{{ url_for('static', filename='layout.css') }}" rel="stylesheet">
+        {% block style %}{% endblock %}
+        {% block script %}{% endblock %}
+    </head>
+    <body>
+        <div class="row" id="siteheader">
+            <div class="col-lg-1">
+                <img src="{{ url_for('static', filename='krishna.jpg') }}" class="img-thumbnail" id="logo">
+            </div>
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-6">
+                <h1 style="font-style: italic;">Sanskrit</h1>                
+                {% block links %}{% endblock %}
+            </div>
+            <div class="col-lg-1">
+            </div>
+            <div class="col-lg-2">
+            </div>
+        </div>
+        <hr>
+        {% block body %}{% endblock %}
+    </body>
+</html>
