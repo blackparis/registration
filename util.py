@@ -6,6 +6,8 @@ import envs
 
 
 def validate_username(username):
+    if len(username) > 18:
+        return 0
     if not username[0].isalnum() or not username[-1].isalnum():
         return 0
     for c in username:

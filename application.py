@@ -22,6 +22,7 @@ application.config["SECRET_KEY"] = envs.SECRET_KEY
 
 @application.route("/")
 def homepage():
+    #return redirect(url_for('register'))
     return redirect("https://paris-sanskrit.com/login", code=302)
 
 
@@ -77,7 +78,7 @@ def register():
     if not util.validate_username(username):
         return render_template(
             "register.html",
-            register_error="Username can have alphanumeric, ( . ), ( - ) or ( _ ) characters."
+            register_error="Username can have alphanumeric, ( . ), ( - ) or ( _ ) (MAX 18) characters."
         )
 
     u = User.query.filter_by(username=username).first()
