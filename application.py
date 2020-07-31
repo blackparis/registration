@@ -23,7 +23,7 @@ application.config["SECRET_KEY"] = envs.SECRET_KEY
 @application.route("/")
 def homepage():
     #return redirect(url_for('register'))
-    return redirect("https://paris-sanskrit.com/login", code=302)
+    return redirect("https://paris-sanskrit.herokuapp.com/login", code=302)
 
 
 @application.route("/register", methods=["POST", "GET"])

@@ -1,5 +1,4 @@
 import smtplib
-import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import envs
@@ -65,16 +64,7 @@ def validate_email(email):
     return 1
 
 
-def sendemail(RECIPIENT, code):
-    SENDER = "verification@paris-sanskrit.com"
-    SENDERNAME = 'Sanskrit'
-    USERNAME_SMTP = envs.USERNAME_SMTP
-    PASSWORD_SMTP = envs.PASSWORD_SMTP
-    HOST = envs.SMTP_HOST
-    PORT = 587
-
-    SUBJECT = "Verify Your Email Address"
-    BODY_TEXT = f"Verification Code: {code}"
+def sendemail(email, code):
     BODY_HTML = f"""
     <html>
         <head></head>
@@ -84,31 +74,23 @@ def sendemail(RECIPIENT, code):
             <h4>{code}</h4>
             <br>
             <p>This email was sent by
-                <a href='https://paris-sanskrit.com'>Sanskrit</a>
+                <a href='https://paris-sanskrit.herokuapp.com'>Sanskrit</a>
             </p>
             <p>Note, this e-mail was sent from an address that cannot accept incoming e-mails.</p>
         </body>
     </html>
                 """
-
-    msg = MIMEMultipart('alternative')
-    msg['Subject'] = SUBJECT
-    msg['From'] = email.utils.formataddr((SENDERNAME, SENDER))
-    msg['To'] = RECIPIENT
-
-    part1 = MIMEText(BODY_TEXT, 'plain')
-    part2 = MIMEText(BODY_HTML, 'html')
-    msg.attach(part1)
-    msg.attach(part2)
-
-    try:  
-        server = smtplib.SMTP(HOST, PORT)
-        server.ehlo()
+    msg = MIMEMultipart("alternative")
+    msg["From"] = envs.ADMIN_EMAIL_ADDRESS
+    msg["To"] = email
+    msg["Subject"] = "verify our email address"
+    msg.attach(MIMEText(BODY_HTML, 'html'))
+    try:
+        server = smtplib.SMTP("smtp-mail.outlook.com", 587)
         server.starttls()
-        server.ehlo()
-        server.login(USERNAME_SMTP, PASSWORD_SMTP)
-        server.sendmail(SENDER, RECIPIENT, msg.as_string())
-        server.close()
+        server.login(envs.ADMIN_EMAIL_ADDRESS, envs.ADMIN_EMAIL_PASSWORD)
+        server.sendmail(envs.ADMIN_EMAIL_ADDRESS, email, msg.as_string())
+        server.quit()
     except:
         return False
     else:

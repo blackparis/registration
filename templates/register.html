@@ -7,12 +7,6 @@
 {% block style %}
 {% endblock %}
 
-{% block links %}
-    <a href="https://paris-sanskrit.com">Homepage</a>&nbsp;&nbsp;
-    <a href="https://paris-sanskrit.com/contents">Contents</a>&nbsp;&nbsp;
-    <a href="https://paris-sanskrit.com/notes">Notes</a>&nbsp;&nbsp;
-    <a href="https://paris-sanskrit.com/search">Search</a>
-{% endblock %}
 
 {% block body %}
 <div style="text-align: center;">
@@ -43,7 +37,7 @@
             </form>
             {% if register_error %}<div class="error_message">{{ register_error }}</div>{% else %}<br>{% endif %}
             <div>
-                <a href="https://paris-sanskrit.com/login">Login</a>&nbsp;&nbsp;
+                <a href="https://paris-sanskrit.herokuapp.com/login">Login</a>&nbsp;&nbsp;
                 <a href="{{ url_for('recover') }}">Forgot Password</a>
             </div>
         </div>
